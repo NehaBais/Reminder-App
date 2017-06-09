@@ -1,0 +1,33 @@
+<div *ngIf = "appState == 'default' ">
+<form>
+    <input   type = "text" [(ngModel)] = "text"  name ="text">
+    <input   type = "date" [(ngModel)] = "date"  name ="date">
+    <input   type = "time" [(ngModel)] = "time"  name ="time">
+    <button  class = "btn btn-success btn-small" (click) = "addTodo()">Add Task</button>
+    </form>
+</div>
+
+<div *ngIf = "appState == 'edit'">
+<h3>Edit Todo</h3>
+<form (submit) = "updateTodo()">
+    <input type = "text" [(ngModel)] = "text" name ="text">
+ </form>
+</div>
+
+<h3>Todo List</h3>
+<table align = "center" class = "table table-stripped">
+<tr>
+<th><h4>Task</h4></th>
+<th><h4>Due Date</h4></th>
+<th><h4>Due Time</h4></th>
+<th></th>
+</tr>
+
+<tr  *ngFor = " let todo of todos">
+<td><h5> {{todo.text}} </h5> </td> <td><h5> {{todo.date}} </h5></td> <td> <h5>{{todo.time}} </h5></td> 
+<button  class = "btn btn-danger btn-small" (click) = "deleteTodo(todo.text,todo.date,todo.time)"> Delete </button>
+<button  class = "btn btn-primary btn-small" (click) = "editTodo(todo)">Edit</button>
+</tr>
+
+</table>
+
